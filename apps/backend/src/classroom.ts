@@ -41,7 +41,7 @@ export async function getCourses(accessToken: string) {
   const auth = new google.auth.OAuth2();
   auth.setCredentials({ access_token: accessToken });
 
-  const classroom = google.classroom({ version: "v1", auth });
+  const classroom = google.classroom({ version: "v1", auth } as any );
   const res = await classroom.courses.list({ studentId: "me", pageSize: 20 });
   return res.data.courses ?? [];
 }
@@ -50,7 +50,7 @@ export async function getCourseWorks(accessToken: string, courseId: string): Pro
   const auth = new google.auth.OAuth2();
   auth.setCredentials({ access_token: accessToken });
 
-  const classroom = google.classroom({ version: "v1", auth });
+  const classroom = google.classroom({ version: "v1", auth } as any );
   const res = await classroom.courses.courseWork.list({
     courseId,
     pageSize: 20,
