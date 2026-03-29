@@ -63,7 +63,7 @@ export async function getSubmissions(accessToken: string, courseId: string): Pro
   const auth = new google.auth.OAuth2();
   auth.setCredentials({ access_token: accessToken });
 
-  const classroom = google.classroom({ version: "v1", auth });
+  const classroom = google.classroom({ version: "v1", auth } as any );
   const res = await classroom.courses.courseWork.studentSubmissions.list({
     courseId,
     courseWorkId: "-",
